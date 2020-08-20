@@ -1,4 +1,4 @@
-const { Client, Collection } = require("discord.js");
+const { Client: _Client, Collection } = require("discord.js");
 const Database = require("./Database");
 const { EventHandler, CommandHandler, ExtenderHandler, PrototypeHandler } = require("../handlers");
 const { Emojis } = require("../utils");
@@ -6,7 +6,7 @@ const Util = require("./Util");
 
 require("dotenv/config");
 
-module.exports = class XVClient extends Client {
+module.exports = class Client extends _Client {
     constructor(opts) {
         super(opts);
 
@@ -27,6 +27,14 @@ module.exports = class XVClient extends Client {
         this.database = Database;
 
         this.commands = new Collection();
+    }
+
+    async findUser(id) {
+        const check = await database.Users.findOne({ _id: id });
+        if (check) return check;
+        const document = new database.Users({ _id: id });
+        await document.save();
+        return document;
     }
 
     init(token = process.env.TOKEN) {
