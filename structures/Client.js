@@ -29,14 +29,6 @@ module.exports = class Client extends _Client {
         this.commands = new Collection();
     }
 
-    async findUser(id) {
-        const check = await database.Users.findOne({ _id: id });
-        if (check) return check;
-        const document = new database.Users({ _id: id });
-        await document.save();
-        return document;
-    }
-
     init(token = process.env.TOKEN) {
         new EventHandler(this).init({ dir: this.opts.events });
         new CommandHandler(this).init({ dir: this.opts.commands });
