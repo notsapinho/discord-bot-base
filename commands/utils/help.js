@@ -17,8 +17,7 @@ module.exports = class extends Command {
 
         this.translators = {
             devs: "Desenvolvedores",
-            utils: "Utilidades",
-            nsfw: "Pornôgrafia"
+            utils: "Utilidades"
         };
     }
 
