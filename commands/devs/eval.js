@@ -44,7 +44,7 @@ module.exports = class extends Command {
 
         result = result.replace(/message.guild.members.cache.get\("(\d{16,18})"\)/g, "<@$1>");
 
-        if (result.length > 2048) {
+        if (result.length > 2000) {
             let page = 0;
             const pages = splitText(result, 1024);
             message.send(success ? `:outbox_tray: **Output:**\n${this.client.util.codeBlock("js", pages[page])}\n:question: **Tipo**:${this.client.util.codeBlock("js", type)}` : `${this.client.emotes.x} **Erro:**:${this.client.util.codeBlock("js", pages[page])}`).then(async (msg) => {
