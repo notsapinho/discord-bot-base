@@ -7,12 +7,9 @@ let sensitivePattern;
 const TOTITLECASE = /[A-Za-zÀ-ÖØ-öø-ÿ]\S*/g;
 const REGEXPESC = /[-/\\^$*+?.()|[\]{}]/g;
 
-/**
- * Contains static methods to be used throughout klasa
- */
 class Util {
     /**
-     * @typedef {(KlasaGuild|KlasaMessage|external:GuildChannel)} GuildResolvable
+     * @typedef {(Guild|Message|external:GuildChannel)} GuildResolvable
      */
 
     /**
@@ -54,7 +51,7 @@ class Util {
      * Initializes the sensitive patterns for clean()
      * @since 0.0.1
      * @private
-     * @param {KlasaClient} client The Klasa client
+     * @param {Client} client The client
      */
     static initClean(client) {
         sensitivePattern = new RegExp(Util.regExpEsc(client.token), "gi");
@@ -297,9 +294,9 @@ class Util {
     /**
      * Resolves a guild
      * @since 0.5.0
-     * @param {KlasaClient} client The KlasaClient
+     * @param {Client} client The Client
      * @param {GuildResolvable} guild A guild resolvable
-     * @returns {?KlasaGuild}
+     * @returns {?Guild}
      * @private
      */
     static resolveGuild(client, guild) {
