@@ -5,5 +5,6 @@ module.exports = class Ready {
     }
     async exec() {
         this.client.log.success("READY!");
+        this.client.util.initClean(this.client);
     }
 };
