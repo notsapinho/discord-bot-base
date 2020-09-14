@@ -35,6 +35,5 @@ module.exports = class Client extends _Client {
         new ExtenderHandler(this).init({ dir: this.opts.extenders });
         new PrototypeHandler(this).init({ dir: this.opts.prototypes });
         super.login(token).catch((err) => new Error("Invalid Token", err));
-        this.util.initClean(this);
     }
 };
